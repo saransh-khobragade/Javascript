@@ -1,0 +1,6 @@
+we use objects to model real world things that we want to represent inside our programs,
+ and/or provide a simple way to access functionality that would otherwise be hard or impossible to make use of.
+ 
+ 
+  Object data (and often, functions too) can be stored neatly (the official word is encapsulated) inside an object package 
+  (which can be given a specific name to refer to, which is sometimes called a namespace)
