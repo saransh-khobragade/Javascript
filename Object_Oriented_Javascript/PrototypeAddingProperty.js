@@ -4,6 +4,7 @@ function abc(x,y){
 }
 
 var a=new abc(1,2)
-a.prototype.z=3
 
-console.log(a)
+abc.prototype.z=3
+
+console.log(a.z)

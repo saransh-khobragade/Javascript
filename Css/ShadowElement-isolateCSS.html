@@ -1,0 +1,30 @@
+<html>
+
+<style>
+    div{
+        color:red;
+    }
+    
+</style>
+
+<body>
+  <template id="shadowEle">
+    <style type="text/css">
+        h3{
+            color: blue;
+        }
+    </style>
+
+    <h3>Hello my name is saransh</h3>
+  </template>
+
+  <div>hello1</div>
+  <div id="abc"></div>
+
+</body>
+<script>
+    var a=document.getElementById("shadowEle").innerHTML;
+    document.getElementById("abc").innerHTML=a;
+</script>
+
+</html>

@@ -1,0 +1,20 @@
+<html>
+<body>
+    return dupliacte number
+</body>
+<script>
+  let arr=[1,1,2,3,7,2,1,5,0,0,0,4]
+  
+  let result=arr.filter((x,y)=>{
+    if(x===0) {if(arr.indexOf(x)!=y) return true}
+    if(arr.indexOf(x)!=y) return x
+    })
+  
+  let dup=[...new Set(result)]
+
+  console.log("array",arr)
+  console.log("unique",[...new Set(arr)])
+  console.log("duplicats",dup)
+
+</script>
+</html>

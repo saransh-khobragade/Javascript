@@ -1,5 +1,19 @@
-<a href = "javascript:void console.log('hello world!!')"> 
-    Click here to do nothing 
-  </a> 
-  <br/><br/><br/> 
-  <a href = "javascript:alert('hello');">Click here for an alert</a>
+<html>
+  <style>
+  
+  </style>
+<body>
+    <div id="cell">hello</div>
+</body>
+<script>
+ window.onload = function() {
+  cell()
+ }
+function cell(){
+  let cell=document.getElementById('cell');
+  cell.style.width = "100px";
+  cell.style.height = "100px";
+  cell.style.border = "1px solid black";
+}
+</script>
+</html>

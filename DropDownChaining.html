@@ -1,0 +1,133 @@
+<html>
+
+<body>
+<select id="countries" onchange="getStates(value)"></select>
+<select id="states" onchange="getCities(countries.value,value)"></select>
+<select id="cities"></select>
+</body>
+
+<script>
+var Data={
+    countries:{
+        India:{
+            states:{
+                Kashmir:{
+                    city:["Kcity1","Kcity2","Kcity3"]
+    
+                },
+                Maharastra:{
+                    city:["Mcity1","Mcity2","Mcity3"]
+    
+                },
+                Chattisgarh:{
+                    city:["Ccity1","Ccity2","Ccity3"]
+                }   
+
+            }
+            
+        },
+        Pakistan:{
+            states:{
+                state1:{
+                    city:["Kcity1","Kcity2","Kcity3"]
+    
+                },
+                state2:{
+                    city:["Mcity1","Mcity2","Mcity3"]
+    
+                },
+                state3:{
+                    city:["Ccity1","Ccity2","Ccity3"]
+                }   
+
+            }
+
+        },
+        China:{
+            states:{
+                state1:{
+                    city:["Kcity1","Kcity2","Kcity3"]
+    
+                },
+                state2:{
+                    city:["Mcity1","Mcity2","Mcity3"]
+    
+                },
+                state3:{
+                    city:["Ccity1","Ccity2","Ccity3"]
+                }    
+
+            }
+        },
+        America:{
+            states:{
+                state1:{
+                    city:["Kcity1","Kcity2","Kcity3"]
+    
+                },
+                state2:{
+                    city:["Mcity1","Mcity2","Mcity3"]
+    
+                },
+                state3:{
+                    city:["Ccity1","Ccity2","Ccity3"]
+                }  
+
+            }
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+    
+    var countries=document.getElementById('countries');
+    for(var a in Data.countries)
+    {
+        var item=document.createTextNode(a);
+            var options=document.createElement("option")
+            options.appendChild(item)
+            countries.appendChild(options)
+    }
+    for(var a in Data.countries){
+        getStates(a)
+        for(var b in Data.countries[a].states){
+            getCities(a,b)
+            break
+        }
+        break
+    }
+})
+
+function getStates(value){
+    document.getElementById("states").options.length = 0;
+    
+    var states=document.getElementById("states")
+    
+
+    for(var a in Data.countries[value].states)
+    {
+        var item=document.createTextNode(a);
+        var options=document.createElement("option")
+        options.appendChild(item)
+        states.appendChild(options)
+    }
+}
+
+function getCities(country,value){
+
+    document.getElementById("cities").options.length = 0;
+
+    var cities=document.getElementById("cities")
+
+    var cityArray = Data.countries[country].states[value].city;
+
+    cityArray.forEach(element => {
+        var item=document.createTextNode(element);
+        var options=document.createElement("option")
+        options.appendChild(item)
+        cities.appendChild(options)
+    });
+
+}
+</script>
+<html>

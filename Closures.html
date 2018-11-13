@@ -1,0 +1,44 @@
+<html>
+
+<body>
+    CLosures Private variables
+</body>
+<script>
+
+    var bankAccount = function (initialBalance) {
+
+
+        var balance = initialBalance; //balance variable is private cant be accessed
+
+        return {
+            getBalance: function () {
+                return balance
+            },
+            deposit: function (amount) {
+
+                balance += amount;
+
+                return balance;
+            },
+            withdraw: function (amount) {
+
+                if (amount <= balance) {
+                    balance -= amount;
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    }
+
+    var marceloAccount = bankAccount(100);
+
+    marceloAccount.deposit(10) // 110
+    marceloAccount.withdraw(80) // true
+    marceloAccount.withdraw(80) // false 
+
+</script>
+
+</html>

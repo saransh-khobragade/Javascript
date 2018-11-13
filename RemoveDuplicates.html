@@ -1,0 +1,35 @@
+<html>
+<body>
+    remove dupliacte number
+</body>
+<script>
+  let arr=[1,1,2,3,7,2,1,5,0,0,0,4]
+  
+  let result=arr.filter((x,y)=>{
+    if(x===0) {if(arr.indexOf(x)===y) return true}
+    if(arr.indexOf(x)===y) return x;
+  })
+  console.log("using filter:", result)
+
+  result=arr.sort().reduce((acc,crr,i)=>{
+    let len=acc.length;
+    if(len===0||crr!==acc[len-1]){
+      acc.push(crr)
+    }
+    return acc
+  },[])
+  console.log("using reduce",result)
+
+  result=[]
+  arr.forEach((x)=>{
+    if(result.indexOf(x)===-1){
+      result.push(x)
+    }
+  })
+  console.log("using foreach",result)
+
+  result=[...new Set(arr)]
+  console.log("using set",result)
+
+</script>
+</html>

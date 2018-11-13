@@ -1,0 +1,82 @@
+<html>
+
+<style>
+    div {
+        height: 80vh;
+    }
+
+
+    .absolute {
+        text-align: center;
+        position: relative;
+        height: 80vh;
+    }
+
+    .absolute p {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+    }
+
+    .flexbox {
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .grid {
+        height: 80vh;
+        display: grid;
+        align-items: center;
+        /* place-items: center; */
+        justify-content: center;
+
+    }
+
+    .margins {
+        height: 80vh;
+        display: flex;
+        /* display: grid; */
+    }
+
+    .margins p {
+        margin: auto;
+    }
+
+    .margins-auto {
+        width: 200px;
+        margin: 0 auto;
+        position: relative;
+        top:50%;
+    }
+</style>
+
+
+
+<body>
+
+    <div class="absolute">
+        <p>absolute Center me!</p>
+    </div>
+
+     <div class="flexbox">
+        <p>flexbox Center me!</p>
+    </div>
+
+       <div class="grid">
+        <p>grid Center me!</p>
+    </div>
+
+
+     <div class="margins">
+        <p>margin Center me!</p>
+    </div>
+
+    <div class="margins-auto">
+        <p>margin auto Center me!</p>
+    </div>
+
+</body>
+
+</html>

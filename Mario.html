@@ -1,0 +1,108 @@
+<html>
+  <style>
+  
+  </style>
+<body>
+    <div id="grid" style="margin:10px;position: absolute;"></div>
+</body>
+<script>
+    
+    
+    window.onload = function() {
+    const row=200
+    const col=200
+    
+    Grid(row,col)
+    handleMouseEvents(row,col)
+    console.log(getRandomFoodCoordinates(row,col))
+}
+ 
+//https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUECULneNEajrCoKL-wIlh6crJs0TBg64w2GJUTKHOlLiW1P2BQQ"
+function placeFood(){
+
+}
+
+function getRandomFoodCoordinates(row,col){
+    const totalNoOfCells=((row/50)*(col/50))
+    const numberOfFood=(row/50)
+    
+    const randResult=[]
+    while(randResult.length<=numberOfFood){
+        const randomFoodNo=(Math.floor(Math.random() * Math.floor(totalNoOfCells)))+1
+        if(randomFoodNo!=1){
+            if(randResult.indexOf(randomFoodNo)===-1)
+                randResult.push(randomFoodNo)
+        }
+    }
+    return randResult
+}
+
+function Grid(row,col){
+    for(let i=0;i<row;){
+        for(let j=0;j<col;){
+            document.getElementById("grid").append(cell(i,j))
+            j=j+50
+        }
+        i=i+50
+    }
+    document.getElementById("grid").append(mario("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUECULneNEajrCoKL-wIlh6crJs0TBg64w2GJUTKHOlLiW1P2BQQ"))
+}
+
+function cell(x,y){
+    
+    let cell=document.createElement("div")
+    cell.style.width = "50px";
+    cell.style.height = "50px";
+    cell.style.border = "1px solid black";
+    cell.style.position="absolute";
+    cell.style.top=x;
+    cell.style.left=y;
+    cell.style.backgroundSize="100% auto";
+    return cell
+}
+function mario(imageSRC){
+    
+    let cell=document.createElement("div")
+    cell.setAttribute("id", "mario");
+    cell.style.width = "50px";
+    cell.style.height = "50px";
+    cell.style.position="absolute";
+    cell.style.top=0;
+    cell.style.left=0;
+    cell.style.margin="0px"
+    cell.style.border = "1px solid red";
+    cell.style.backgroundImage = "url('"+imageSRC+"')";
+    cell.style.backgroundSize="100% auto";
+    cell.style.zIndex="1"
+    return cell
+}
+function moveMario(x,y){
+   let m= document.getElementById('mario')
+   m.style.top=x
+   m.style.left=y
+}
+
+function handleMouseEvents(row,col){
+    document.onkeydown = function(event) {
+    self.eventType=event.which
+    let mario=document.getElementById('mario')
+    if(eventType===38 && mario.offsetTop-50>=0){
+        console.log('up')
+        moveMario(mario.offsetTop-50,mario.offsetLeft)
+    }
+    else if(eventType===39 && mario.offsetLeft+50<col){
+        console.log('right')
+        moveMario(mario.offsetTop,mario.offsetLeft+50)
+    }
+    else if(eventType===40 && mario.offsetTop+50<row){
+        console.log('down')
+        moveMario(mario.offsetTop+50,mario.offsetLeft)
+    }
+    else if(eventType===37 && mario.offsetLeft-50>=0){
+        console.log('left')
+        moveMario(mario.offsetTop,mario.offsetLeft-50)
+    }
+  };
+}
+</script>
+</html>
