@@ -9,8 +9,9 @@
 <script>
 
     window.onload = function () {
-        const row = 300
-        const col = 300
+        const row = prompt("Please enter no. of rows")*50
+        const col = prompt("Please enter no. of cols")*50
+        
         let foodCorrdinates = getRandomFoodCoordinates(row, col)
 
         Grid(row, col)
