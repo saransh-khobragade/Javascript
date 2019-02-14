@@ -1,0 +1,29 @@
+<html>
+
+<body>
+    Hello
+    <a href="https://www.google.com/">Jump to google</a>
+    <img id="img" src="https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg">
+</body>
+<script>
+    console.log(document.readyState)
+    
+    window.addEventListener('DOMContentLoaded', (() => {
+        console.log('DOMContentLoaded',document.readyState)
+        alert(`DOMContentLoaded event,Image size: ${img.offsetWidth}x${img.offsetHeight}`)
+    }))
+
+    window.addEventListener('load', (() => {
+        console.log('load',document.readyState)
+        alert(`load event: Image size: ${img.offsetWidth}x${img.offsetHeight}`)
+    }))
+   
+    window.onbeforeunload = function () {
+        console.log('onbeforeunload',document.readyState)
+        return "onbeforeunload event There are unsaved changes. Leave now?";
+    };
+
+
+</script>
+
+</html>

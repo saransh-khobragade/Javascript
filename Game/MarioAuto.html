@@ -1,0 +1,195 @@
+<html>
+<style>
+
+</style>
+
+<body>
+    <div id="grid" style="margin:10px;position: absolute;"></div>
+    <div id="count" style="position:absolute; top:0px; left:100px"></div>
+</body>
+<script>
+
+    window.onload = function () {
+        
+        const row = prompt("Please enter no. of row or col")*50
+        const col = row
+        
+        let foodCorrdinates = getRandomFoodCoordinates(row, col)
+
+        Grid(row, col)
+        createFood(row, col, foodCorrdinates)
+        handleMouseEvents(row, col, foodCorrdinates)
+
+    }
+    
+    function handleMouseEvents(row, col, foodCorrdinates) {
+        let countMoves = 0;
+        let interval;
+        
+        
+        document.onkeydown = function (event) {
+            self.eventType = event.which
+            let direction
+        
+            if(eventType === 37) direction="left"
+            if(eventType === 38) direction="up"
+            if(eventType === 39) direction="right"
+            if(eventType === 40) direction="down"
+
+            let mario = document.getElementById('mario')
+            
+            
+            clearInterval(interval)
+            interval=setInterval(()=>{ 
+                
+                countMoves=countMoves+1
+                if(foodCorrdinates.length===0) {alert("Game over with "+ (countMoves-1) +" moves"); clearInterval(interval);}
+
+                else if(direction === "left" && mario.offsetLeft>0){
+                    moveMario(mario.offsetTop, mario.offsetLeft-50, foodCorrdinates)
+                }
+                else if(direction === "up" && mario.offsetTop>0){
+                    moveMario(mario.offsetTop-50, mario.offsetLeft, foodCorrdinates)
+                }
+                else if(direction === "right" && mario.offsetLeft+50<col){
+                    moveMario(mario.offsetTop, mario.offsetLeft+50, foodCorrdinates)
+                }
+                else if(direction === "down" && mario.offsetTop+50<row){
+                    moveMario(mario.offsetTop+50, mario.offsetLeft, foodCorrdinates)
+                }
+
+                if(direction==="down" && mario.offsetTop+50==row){direction="up"} 
+                if(direction==="up" && mario.offsetTop==0) {direction="down"} 
+                if(direction==="left" && mario.offsetLeft==0) {direction="right"} 
+                if(direction==="right" && mario.offsetLeft+50==col) {direction="left"} 
+
+                document.getElementById('count').innerHTML="Moves:"+(countMoves-1)
+            },500)
+
+        }
+        
+            
+        
+
+
+    }
+    function createFood(row, col, corr) {
+        let foodCor = corr
+        let top = 0;
+        let left = 0;
+
+        for (c in foodCor) {
+            left = foodCor[c].left
+            top = foodCor[c].top
+            document.getElementById("grid").append(
+                blockImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzzyVNyws0-sfBaYmt8fEJhXXpKOFLdS8zeUi4_Y3tui1cjUQT",
+                    "food" + foodCor[c].index,
+                    top,
+                    left,
+                    "1px solid green",
+                    "1"))
+        }
+
+    }
+
+
+    function getRandomFoodCoordinates(row, col) {
+        const totalNoOfCells = ((row / 50) * (col / 50))
+        const numberOfFood = (row / 50)
+
+        const randResult = []
+        while (randResult.length < numberOfFood) {
+            const randomFoodNo = (Math.floor(Math.random() * Math.floor(totalNoOfCells))) + 1
+            if (randomFoodNo != 1) {
+                if (randResult.indexOf(randomFoodNo) === -1)
+                    randResult.push(randomFoodNo)
+            }
+        }
+
+        let cor = []
+        for (i in randResult) {
+            let a = randResult[i]
+            let rb = row / 50
+            let c = 0;
+            let r = 0;
+            if (a % rb !== 0) {
+                c = a % rb
+                r = Math.floor(a / rb) + 1
+            }
+            else {
+                r = a / rb
+                c = rb
+            }
+            cor.push({ "top": (r - 1) * 50, "left": (c - 1) * 50, "index": i })
+        }
+        return cor;
+    }
+
+    function Grid(row, col) {
+        for (let i = 0; i < row;) {
+            for (let j = 0; j < col;) {
+                document.getElementById("grid").append(cell(i, j))
+                j = j + 50
+            }
+            i = i + 50
+        }
+        document.getElementById("grid").append(blockImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUECULneNEajrCoKL-wIlh6crJs0TBg64w2GJUTKHOlLiW1P2BQQ", "mario"))
+    }
+
+    function cell(x, y) {
+
+        let cell = document.createElement("div")
+        cell.style.width = "50px";
+        cell.style.height = "50px";
+        cell.style.border = "1px solid black";
+        cell.style.position = "absolute";
+        cell.style.margin = "0px"
+        cell.style.top = x;
+        cell.style.left = y;
+        cell.style.backgroundSize = "100% auto";
+        return cell
+    }
+
+    function blockImage(imageSRC, id, top = 0, left = 0, border = "1px solid red", zIndex = "2") {
+
+        let cell = document.createElement("div")
+        cell.setAttribute("id", id);
+        cell.style.width = "50px";
+        cell.style.height = "50px";
+        cell.style.position = "absolute";
+        cell.style.top = top;
+        cell.style.left = left;
+        cell.style.margin = "0px"
+        cell.style.border = border;
+        cell.style.backgroundImage = "url('" + imageSRC + "')";
+        cell.style.backgroundSize = "100% auto";
+        cell.style.zIndex = zIndex
+        return cell
+    }
+
+    function moveMario(x, y, foodCorrdinates) {
+        let m = document.getElementById('mario')
+
+        m.style.top = x
+        m.style.left = y
+
+        for (let c in foodCorrdinates) {
+
+            let left = foodCorrdinates[c].left
+            let top = foodCorrdinates[c].top
+
+            if (x === top && y === left) {
+
+                let element = document.getElementById("food" + foodCorrdinates[c].index);
+
+                element.parentNode.removeChild(element);
+                foodCorrdinates.splice(c, 1)
+
+            }
+        }
+    }
+
+    
+</script>
+
+</html>

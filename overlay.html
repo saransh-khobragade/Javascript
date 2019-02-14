@@ -1,0 +1,40 @@
+<html>
+<style>
+#overlay{
+    overflow-y: scroll;
+    height: 100%;
+}
+.box{
+    position: absolute;
+    bottom:0;
+}
+</style>
+
+<body>
+    <div id="overlay">
+        <ul>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+            <li><h1>helloo</h1>
+              
+        </ul>
+        <input class="box" type="text">
+    </div>
+
+</body>
+<script>
+    var messageBody = document.getElementById('overlay');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+</script>
+</html>
