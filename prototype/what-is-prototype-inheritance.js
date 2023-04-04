@@ -27,4 +27,9 @@ do {
 null
 */
 
-
+function parent(){
+    this.a = "hello"
+}
+const p = new parent()
+const child = Object.create(p)
+console.log(child.a)
