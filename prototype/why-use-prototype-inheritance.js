@@ -1,4 +1,6 @@
 /*
+reference - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+
 Why use prototype inheritance
     When you have created a function with three properties and you have created a object out of it,
     but later you just want to add a function/property to it without adding anything to old declaration.
