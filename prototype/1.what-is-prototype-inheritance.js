@@ -15,6 +15,11 @@ function Person(name) {
 
 a = new Person("max")
 
+Person.prototype.age = 35
+
+console.log(a.age)
+
+//Print complete prototype chain
 let object = a;
 do {
     object = Object.getPrototypeOf(object);
@@ -26,10 +31,3 @@ do {
 [Object: null prototype] {}
 null
 */
-
-function parent(){
-    this.a = "hello"
-}
-const p = new parent()
-const child = Object.create(p)
-console.log(child.a)

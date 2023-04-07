@@ -13,10 +13,9 @@ function Person(first, last, age, eyecolor) {
     this.age = age;
     this.eyeColor = eyecolor;
 }
+const a = new Person("max","payne",12,"black")
   
 Person.prototype.nationality = "English";   //we have not added to body of Person
-
-const a = new Person("max","payne",12,"black")
 
 console.log(a.nationality)  //English
 //Still we are able to access nationality as a property of instance of Person
